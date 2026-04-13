@@ -64,14 +64,17 @@
             color: white;
             text-align: center;
             position: absolute;
-            top: 50%;
+            top: 45%;
             left: 50%;
             transform: translate(-50%, -50%);
             opacity: 0;
             font-weight: 700;
             text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-            white-space: nowrap;
-            font-size: 100px;
+            white-space: pre-line;
+            font-size: clamp(2.5rem, 10vw, 100px);
+            width: 100%;
+            padding: 0 20px;
+            line-height: 1.2;
         }
 
         .romantic-message {
@@ -188,9 +191,9 @@
 
         @media screen and (max-width: 768px) {
             .birthday-text {
-                font-size: 3.5rem;
+                font-size: clamp(2.2rem, 9vw, 3.5rem);
                 width: 100%;
-                padding: 0 20px;
+                padding: 0 15px;
             }
             
             .romantic-message {
@@ -207,7 +210,8 @@
 
         @media screen and (max-width: 480px) {
             .birthday-text {
-                font-size: 2.5rem;
+                font-size: clamp(1.8rem, 8vw, 2.8rem);
+                top: 40%;
             }
             
             .romantic-message {
@@ -232,9 +236,10 @@
     <div class="hearts-container" id="heartsContainer"></div>
     
     <div class="birthday-container">
-        <h1 class="birthday-text text-6xl">H a p p y &nbsp;&nbsp; D i w a l i </h1>
+        <h1 class="birthday-text text-6xl">I&nbsp;&nbsp;&nbsp;&nbsp;L&nbsp;O&nbsp;V&nbsp;E&nbsp;&nbsp;&nbsp;&nbsp;Y&nbsp;O&nbsp;U
+        R&nbsp;I&nbsp;S&nbsp;H&nbsp;I&nbsp;K&nbsp;A</h1>
         <p class="romantic-message">Every moment with you is a celebration, but today is especially magical. Here's to another year of love, laughter, and countless beautiful memories together.</p>
-        <button class="celebrate-button" id="celebrateBtn">Celebrate </button>
+        <button class="celebrate-button" id="celebrateBtn">Love You Too</button>
     </div>
 
     <script>
@@ -781,6 +786,10 @@
             birthdayText.textContent = '';
             
             for (let i = 0; i < text.length; i++) {
+                if (text[i] === '\n') {
+                    birthdayText.appendChild(document.createElement('br'));
+                    continue;
+                }
                 const letter = document.createElement('span');
                 letter.textContent = text[i];
                 letter.className = 'letter';
@@ -874,6 +883,7 @@
                             
                             // For demo purposes, restart animations
                             startFireworks();
+                            alert("i know apne love you too click kra hai");
                             gsap.to(celebrateBtn, {
                                 scale: 1,
                                 duration: 0.5,
